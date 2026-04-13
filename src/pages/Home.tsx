@@ -413,7 +413,7 @@ export default function Home() {
             <div className="flex flex-wrap justify-center gap-6 text-xs text-silver-polished/40 uppercase tracking-widest">
               <Link to="/politica-de-privacidade" className="hover:text-gold-brushed transition-colors">Política de Privacidade</Link>
               <span className="opacity-20">|</span>
-              <a href="#" className="hover:text-gold-brushed transition-colors">Livro de Reclamações Eletrónico</a>
+              <a href="https://www.livroreclamacoes.pt/INICIO/" target="_blank" rel="noopener noreferrer" className="hover:text-gold-brushed transition-colors">Livro de Reclamações Eletrónico</a>
             </div>
 
             <p className="text-silver-polished/30 text-[10px] uppercase tracking-[0.2em]">
