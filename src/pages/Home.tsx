@@ -7,18 +7,24 @@ import {
   Droplets, 
   Sparkles, 
   ShieldCheck,
-  ExternalLink
+  ExternalLink,
+  CarFront,
+  Shield,
+  Zap,
+  Star,
+  Lightbulb,
+  Award
 } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const services = [
-  { name: "Lavagem Manutenção", price: "20€", emoji: "🧽" },
-  { name: "Lavagem Premium", price: "40€", emoji: "💎" },
-  { name: "Detalhe Interior", price: "90€", emoji: "🛋️" },
-  { name: "Descontaminação", price: "130€", emoji: "🛡️" },
-  { name: "Polimento (1 Fase)", price: "200€", emoji: "✨" },
-  { name: "Polimento (Full)", price: "450€", emoji: "🏎️" },
-  { name: "Restauro Ópticas", price: "45€", emoji: "👁️" },
+  { name: "Lavagem Manutenção", price: "20€", icon: <Droplets className="w-6 h-6" /> },
+  { name: "Lavagem Premium", price: "40€", icon: <Sparkles className="w-6 h-6" /> },
+  { name: "Detalhe Interior", price: "90€", icon: <CarFront className="w-6 h-6" /> },
+  { name: "Descontaminação", price: "130€", icon: <Shield className="w-6 h-6" /> },
+  { name: "Polimento (1 Fase)", price: "200€", icon: <Zap className="w-6 h-6" /> },
+  { name: "Polimento (Full)", price: "450€", icon: <Star className="w-6 h-6" /> },
+  { name: "Restauro Ópticas", price: "45€", icon: <Lightbulb className="w-6 h-6" /> },
 ];
 
 const processSteps = [
@@ -40,9 +46,9 @@ const processSteps = [
 ];
 
 const galleryImages = [
-  "https://images.unsplash.com/photo-1614200187524-dc4b892acf16?auto=format&fit=crop&q=80&w=800",
+  "https://images.unsplash.com/photo-1601362840469-51e4d8d58785?auto=format&fit=crop&q=80&w=800",
   "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&q=80&w=800",
-  "https://images.unsplash.com/photo-1553440569-bcc63803a83d?auto=format&fit=crop&q=80&w=800",
+  "https://images.unsplash.com/photo-1600705722908-bab1e61c0b4d?auto=format&fit=crop&q=80&w=800",
   "https://images.unsplash.com/photo-1619682817481-e994891cd1f5?auto=format&fit=crop&q=80&w=800"
 ];
 
@@ -63,23 +69,31 @@ export default function Home() {
         {/* Background Video/Image Placeholder */}
         <motion.div style={{ y: heroBgY }} className="absolute inset-0 z-0">
           <motion.div 
-            initial={{ scale: 1.1 }}
-            animate={{ scale: 1 }}
-            transition={{ duration: 1.5, ease: "easeOut" }}
+            animate={{ scale: [1.05, 1.15, 1.05] }}
+            transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
             className="w-full h-full"
           >
             <img 
-              src="https://images.unsplash.com/photo-1493238555826-397b0d3f679e?auto=format&fit=crop&q=80&w=1920" 
+              src="https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&q=80&w=1920" 
               alt="Luxury Car Detail" 
-              className="w-full h-full object-cover opacity-30"
-              referrerPolicy="no-referrer"
+              className="w-full h-full object-cover opacity-40"
             />
           </motion.div>
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(10,10,10,0.2)_0%,rgba(10,10,10,0.8)_70%,rgba(10,10,10,1)_100%)]"></div>
-          <div className="absolute inset-0 bg-gradient-to-b from-matte-black/90 via-matte-black/40 to-matte-black"></div>
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(10,10,10,0.1)_0%,rgba(10,10,10,0.8)_80%,rgba(10,10,10,1)_100%)]"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-matte-black/80 via-transparent to-matte-black"></div>
         </motion.div>
 
-        <motion.div style={{ y: heroTextY, opacity: heroOpacity }} className="relative z-10 container mx-auto px-6 text-center">
+        <motion.div style={{ y: heroTextY, opacity: heroOpacity }} className="relative z-10 container mx-auto px-6 text-center flex flex-col items-center">
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1 }}
+            className="mb-6 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-gold-brushed/30 backdrop-blur-md"
+          >
+            <Award className="w-4 h-4 text-gold-brushed" />
+            <span className="text-xs font-medium text-silver-polished uppercase tracking-widest">Estética Automóvel Premium</span>
+          </motion.div>
+
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -156,29 +170,29 @@ export default function Home() {
             <div className="w-24 h-1 bg-gold-gradient mx-auto rounded-full"></div>
           </motion.div>
 
-          <div className="max-w-4xl mx-auto">
-            <div className="flex flex-col gap-4">
+          <div className="max-w-5xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {services.map((service, index) => (
                 <motion.div 
                   key={index}
                   initial={{ opacity: 0, y: 15 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1, duration: 0.5, ease: "easeOut" }}
+                  transition={{ delay: index * 0.05, duration: 0.5, ease: "easeOut" }}
                   viewport={{ once: true, margin: "-50px" }}
-                  className="group flex flex-col sm:flex-row sm:items-center justify-between p-6 rounded-2xl bg-white/[0.02] hover:bg-white/[0.05] border border-white/5 hover:border-gold-brushed/30 hover:shadow-[0_0_30px_rgba(212,175,55,0.05)] transition-all duration-300 cursor-pointer"
+                  className="group flex items-center justify-between p-6 rounded-2xl bg-white/[0.02] hover:bg-white/[0.04] border border-white/5 hover:border-gold-brushed/40 hover:shadow-[0_0_30px_rgba(212,175,55,0.08)] transition-all duration-500 cursor-pointer relative overflow-hidden"
                 >
-                  <div className="flex items-center gap-6 mb-4 sm:mb-0">
-                    <div className="w-14 h-14 rounded-xl bg-white/5 flex items-center justify-center text-2xl shadow-inner group-hover:scale-110 transition-transform duration-300">
-                      {service.emoji}
+                  <div className="absolute inset-0 bg-gradient-to-r from-gold-brushed/0 via-gold-brushed/5 to-gold-brushed/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
+                  
+                  <div className="flex items-center gap-5 relative z-10">
+                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-white/10 to-white/5 flex items-center justify-center text-gold-brushed border border-white/10 group-hover:scale-110 group-hover:border-gold-brushed/50 transition-all duration-500 shadow-lg">
+                      {service.icon}
                     </div>
-                    <span className="text-xl md:text-2xl font-medium text-silver-polished group-hover:text-white transition-colors">{service.name}</span>
+                    <span className="text-lg md:text-xl font-medium text-silver-polished group-hover:text-white transition-colors">{service.name}</span>
                   </div>
                   
-                  <div className="hidden sm:block flex-grow border-b-2 border-dotted border-white/10 mx-8 group-hover:border-gold-brushed/40 transition-colors"></div>
-                  
-                  <div className="flex items-center gap-2 self-end sm:self-auto">
-                    <span className="text-sm text-silver-polished/50 uppercase tracking-widest">Desde</span>
-                    <span className="text-3xl font-bold text-gold-brushed">{service.price}</span>
+                  <div className="flex items-center gap-2 relative z-10">
+                    <span className="text-xs text-silver-polished/40 uppercase tracking-widest hidden sm:inline-block">Desde</span>
+                    <span className="text-2xl font-bold text-gold-gradient">{service.price}</span>
                   </div>
                 </motion.div>
               ))}
@@ -208,15 +222,18 @@ export default function Home() {
             <div className="w-24 h-1 bg-gold-gradient mx-auto rounded-full"></div>
           </motion.div>
 
-          <div className="grid md:grid-cols-3 gap-8 lg:gap-12">
+          <div className="grid md:grid-cols-3 gap-8 lg:gap-12 relative">
+            {/* Connecting Line for Desktop */}
+            <div className="hidden md:block absolute top-24 left-[10%] right-[10%] h-px bg-gradient-to-r from-transparent via-gold-brushed/20 to-transparent z-0"></div>
+
             {processSteps.map((step, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.15, duration: 0.7, ease: "easeOut" }}
+                transition={{ delay: index * 0.2, duration: 0.7, ease: "easeOut" }}
                 viewport={{ once: true, margin: "-50px" }}
-                className="relative p-10 rounded-[2rem] bg-white/[0.02] border border-white/5 hover:border-gold-brushed/40 hover:shadow-[0_0_40px_rgba(212,175,55,0.08)] transition-all duration-500 group overflow-hidden"
+                className="relative p-8 md:p-10 rounded-[2rem] bg-gradient-to-b from-white/[0.03] to-transparent border border-white/5 hover:border-gold-brushed/40 hover:shadow-[0_10px_40px_rgba(212,175,55,0.08)] transition-all duration-500 group overflow-hidden backdrop-blur-sm"
               >
                 {/* Large Background Number */}
                 <div className="absolute -right-6 -top-10 text-[12rem] font-black text-white/[0.02] group-hover:text-gold-brushed/[0.05] transition-colors duration-500 pointer-events-none select-none font-display">
